@@ -71,28 +71,58 @@ input {
 .info-item {
   margin-top: 0;
 }
-.btn-container {
-  display: flex;
-  justify-content: center;
-}
+// .btn-container {
+//   display: flex;
+//   justify-content: center;
+// }
 
 .load-more {
   margin-bottom: 10px;
   width: 202px;
   min-height: 50px;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.875;
   letter-spacing: 0.06em;
   color: white;
-  background-color: midnightblue;
+  background-color: rgb(158, 156, 139);
   border: none;
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15);
-  border-radius: 6px;
+  box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.15);
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 5px;
   cursor: pointer;
   text-align: center;
 }
 
+.btn-container {
+  position: relative;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+
+  & .close-btn {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    right: 30px;
+    color: white;
+    background-color: rgb(158, 156, 139);
+    border-radius: 50%;
+    border: none;
+    &:hover {
+      color: #fff;
+      background: #444;
+      border-radius: 50%;
+      border: none;
+    }
+  }
+  & .load-more {
+    bottom: 20px;
+  }
+  & .close-btn {
+    bottom: 20px;
+  }
+}
 // .up-btn {
 //   position: fixed;
 //   right: 0;

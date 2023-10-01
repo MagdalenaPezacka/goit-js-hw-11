@@ -34,7 +34,7 @@ async function eventHandler(event) {
         Notiflix.Notify.success(`Hooray! We found ${name.totalHits} images.`);
         renderGallery(name);
         // console.log(`Current page: ${page}`);
-        const lightbox = new SimpleLightbox('.gallery a', {});
+        const lightbox = new SimpleLightbox('.gallery a', {}).refresh();
         closeBtn.style.display = 'block';
         closeBtn.addEventListener('click', () => {
           gallery.innerHTML = '';
@@ -95,7 +95,7 @@ function renderGallery(name) {
   gallery.insertAdjacentHTML('beforeend', markup);
 }
 
-// Load more button - function
+
 
 loadBtn.addEventListener(
   'click',
@@ -105,7 +105,7 @@ loadBtn.addEventListener(
     fetchImages(name, page, perPage).then(name => {
       let totalPages = name.totalHits / perPage;
       renderGallery(name);
-      new SimpleLightbox('.gallery a');
+      new SimpleLightbox('.gallery a').refresh();
       if (page >= totalPages) {
         loadBtn.style.display = 'none';
         Notiflix.Notify.info(
@@ -117,9 +117,7 @@ loadBtn.addEventListener(
   true
 );
 
-// Preloader
 
-// window.addEventListener('load', fadeEffect);
 
 // let arrayImageId = [{ placeholder: true, text: '' }];
 
