@@ -25,15 +25,13 @@ async function eventHandler(event) {
   // console.log(name);
   fetchImages(name, page, perPage)
     .then(name => {
-      // console.log(`Number of arrays: ${name.hits.length}`);
-      // console.log(`Total hits: ${name.totalHits}`);
       let totalPages = name.totalHits / perPage;
-      // console.log(`Total pages: ${totalPages}`);
+      console.log(`Total pages: ${totalPages}`);
+      console.log(`Total images: ${name.totalHits}`);
 
       if (name.hits.length > 0) {
         Notiflix.Notify.success(`Hooray! We found ${name.totalHits} images.`);
         renderGallery(name);
-        // console.log(`Current page: ${page}`);
         const lightbox = new SimpleLightbox('.gallery a', {}).refresh();
         closeBtn.style.display = 'block';
         closeBtn.addEventListener('click', () => {
@@ -95,8 +93,6 @@ function renderGallery(name) {
   gallery.insertAdjacentHTML('beforeend', markup);
 }
 
-
-
 loadBtn.addEventListener(
   'click',
   () => {
@@ -105,6 +101,14 @@ loadBtn.addEventListener(
     fetchImages(name, page, perPage).then(name => {
       let totalPages = name.totalHits / perPage;
       renderGallery(name);
+      const { height: cardHeight } = document
+        .querySelector('.gallery')
+        .firstElementChild.getBoundingClientRect();
+
+      window.scrollBy({
+        top: cardHeight * 2,
+        behavior: 'smooth',
+      });
       new SimpleLightbox('.gallery a').refresh();
       if (page >= totalPages) {
         loadBtn.style.display = 'none';
@@ -116,8 +120,6 @@ loadBtn.addEventListener(
   },
   true
 );
-
-
 
 // let arrayImageId = [{ placeholder: true, text: '' }];
 
@@ -145,8 +147,6 @@ loadBtn.addEventListener(
 // Notiflix.Notify.failure('Oops! Something went wrong! Try reloading the page!', {
 //   position: 'center-center',
 //   timeout: 3000,
-//   width: '400px',
-//   fontSize: '24px',
 // });
 // }
 
