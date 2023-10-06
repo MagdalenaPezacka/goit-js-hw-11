@@ -39,13 +39,7 @@ async function eventHandler(event) {
           closeBtn.style.display = 'none';
           loadBtn.style.display = 'none';
         });
-        //smooth scrool to up
-        // // upBtn.style.display = 'block';
-        // // upBtn.addEventListener('click', () => {
-        // //   searchingBox.scrollIntoView({
-        // //     behavior: 'smooth',
-        // //   });
-        // });
+     
 
         if (page < totalPages) {
           loadBtn.style.display = 'block';
